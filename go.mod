@@ -1,3 +1,3 @@
-module doki_user_service
+module doki.co.in/doki_user_service
 
 go 1.22
