@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package permission_service;
+
+option go_package = "doki_user_service";
+
+/**
+  * permission service rpc methods
+ */
+service Permission {
+  rpc CanSendMessage (CanSendMessageRequest) returns (PermissionResponse) {};
+}
+
+/**
+  * Schema for [CanSendMessage] rpc parameter
+  * username: current user's username
+  * recipientUsername: user to send message username
+ */
+message CanSendMessageRequest {
+  string username = 1;
+  string recipientUsername = 2;
+}
+
+/**
+  * boolean response for the given permission rpc
+  * this will be used by other rpc in the permission service
+ */
+message PermissionResponse {
+  bool canPerformAction = 1;
+}
