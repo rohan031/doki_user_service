@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package user_service;
+
+option go_package = "doki_user_service/userpb";
+
+/**
+  * user service rpc methods
+ */
+service User {
+  rpc GetUserInfo(UserInfoRequest) returns (UserInfoResponse) {};
+}
+
+/**
+  * schema for [GetUserInfo] rpc parameter
+  * username: current user's username
+  * usersToRequest: list of username to get details of
+ */
+message UserInfoRequest {
+  string username = 1;
+  repeated string usersToRequest = 2;
+}
+
+
+/**
+  * user friend relation status
+ */
+enum UserRelationStatus {
+  PENDING = 0;
+  ACCEPTED = 1;
+}
+
+
+/**
+  * schema to define user relation with respect to current user
+  * requestedBy: username of the relation initiating user
+ */
+message UserRelationInfo {
+  string requestedBy = 1;
+  string addedOn = 2;
+  UserRelationStatus status = 3;
+}
+
+
+/**
+  * schema of user details with respect to current user
+  * [relationInfo] will be different with respect to current user
+ */
+message UserInfo {
+  string username = 1;
+  string userId = 2;
+  string name = 3;
+  string profilePicture = 4;
+ UserRelationInfo relationInfo = 5;
+}
+
+/**
+  * schema for [GetUserInfo] rpc response
+ */
+message UserInfoResponse {
+  repeated  UserInfo user = 1;
+}
+
+
+/**
+  * permission service rpc methods
+ */
+service Permission {
+  rpc CanSendMessage (CanSendMessageRequest) returns (PermissionResponse) {};
+}
+
+/**
+  * Schema for [CanSendMessage] rpc parameter
+  * username: current user's username
+  * recipientUsername: user to send message username
+ */
+message CanSendMessageRequest {
+  string username = 1;
+  string recipientUsername = 2;
+}
+
+/**
+  * boolean response for the given permission rpc
+  * this will be used by other rpc in the permission service
+ */
+message PermissionResponse {
+  bool canPerformAction = 1;
+}
