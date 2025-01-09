@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user_service;
 
-option go_package = "doki_user_service";
+option go_package = "doki_user_service/user";
 
 /**
   * user service rpc methods

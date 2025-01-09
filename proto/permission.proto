@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package permission_service;
 
-option go_package = "doki_user_service";
+option go_package = "doki_user_service/permissions";
 
 /**
   * permission service rpc methods
