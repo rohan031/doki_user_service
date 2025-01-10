@@ -58,5 +58,5 @@ message UserInfo {
   * schema for [GetUserInfo] rpc response
  */
 message UserInfoResponse {
-  repeated  UserInfo user = 1;
+  repeated  UserInfo users = 1;
 }
