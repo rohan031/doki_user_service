@@ -3,6 +3,8 @@ module doki.co.in/doki_user_service
 go 1.22
 
 require (
+	github.com/joho/godotenv v1.5.1
+	github.com/neo4j/neo4j-go-driver/v5 v5.27.0
 	google.golang.org/grpc v1.69.2
 	google.golang.org/protobuf v1.36.2
 )
