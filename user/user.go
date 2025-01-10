@@ -31,7 +31,7 @@ func (u *UserModel) IsUserFriend(username, userToCheck string) (bool, error) {
 	defer cancel()
 	query := `
 		RETURN EXISTS {
-			MATCH (:User {username: $username})-[r:IS_FRIEND {status: "ACCEPTED"}]->(:User {username: $userToCheck})
+			MATCH (:User {username: $username})-[r:IS_FRIEND {status: "ACCEPTED"}]-(:User {username: $userToCheck})
 		} AS isAccepted
 	`
 	params := map[string]any{
