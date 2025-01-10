@@ -51,7 +51,7 @@ message UserInfo {
   string userId = 2;
   string name = 3;
   string profilePicture = 4;
- UserRelationInfo relationInfo = 5;
+  UserRelationInfo relationInfo = 5;
 }
 
 /**
