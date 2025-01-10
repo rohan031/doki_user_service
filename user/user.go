@@ -14,12 +14,19 @@ type UserModel struct {
 // IsUserBlocked Method to check if the relation between current user
 // and user to check is block relation
 func (u *UserModel) IsUserBlocked(username, userToCheck string) (bool, error) {
+	if username == userToCheck {
+		return false, nil
+	}
 	return false, nil
 }
 
 // IsUserFriend Method to check if the relation between current user and
 // user to check has friend relation with ACCEPTED status
 func (u *UserModel) IsUserFriend(username, userToCheck string) (bool, error) {
+	if username == userToCheck {
+		return true, nil
+	}
+
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	query := `
